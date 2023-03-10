@@ -1,0 +1,46 @@
+<html>
+  <head>
+    <h0>HEAD</h0> <br>
+  </head>
+  <body>
+    <table>
+    <tr><th><H2>Date</H2></th><th><H2>Players list</H2></th><th><H2>Info</H2></th></tr>
+    {% for game in data %}
+        <tr>
+            <th><H2>{{  game['date'] }}</H2></th>
+            <th>
+                <table>
+                    <tr><th>Name</th><th>Team</th><th>TeamKill</th><th>Kill</th><th>Death</th><th>BombPlanted</th><th>Headshot</th><th>Assist</th><th>BombDefused</th><th>Experience</th></tr>
+                    {% if game['allStats'] %}
+                        <!-- <b>Statistics:</b> <br> -->
+                        {% for Players in game.allStats %}
+                            <tr>
+                                <th>{{ Players.playerName}}</th>
+                                <th>{{ Players.teamId}}</th>
+                                <th>{{ Players.TeamKill}}</th>
+                                <th>{{ Players.Kill}}</th>
+                                <th>{{ Players.Death}}</th>
+                                <th>{{ Players.BombPlanted}}</th>
+                                <th>{{ Players.Headshot}}</th>
+                                <th>{{ Players.Assist}}</th>
+                                <th>{{ Players.BombDefused}}</th>
+                                <th>{{ Players.Experience}}</th>
+                            </tr>
+                        {% endfor %}
+                    {% endif %}
+                </table>
+            </th>
+            <th>
+                MapLabel : {{ game['MapLabel'] }}<br>
+                GameMode : {{ game['GameMode'] }}<br>
+                PlayerCount : {{ game['PlayerCount'] }}<br>
+                bTeams : {{ game['bTeams'] }}<br>
+                Team0Score : {{ game['Team0Score'] }}<br>
+                Team1Score : {{ game['Team1Score'] }}<br>
+            </th>
+        </tr>
+    {% endfor %}
+    </table>
+  </body>
+  
+</html>
