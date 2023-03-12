@@ -61,8 +61,8 @@ if __name__  == '__main__':
     PUT_URL = os.getenv('PUT_URL')
     print('Read pavlov logs from path %s' % os.getenv('LOG_PATH'))
     print('worker runs every {0} minutes'.format(os.getenv('TIME_FROM_WORKER')))
-    # schedule.every(TIME_FROM_WORKER).minutes.do(worker)
-    # while True:
-    #     schedule.run_pending()
-    #     time.sleep(10)
-    worker()
+    schedule.every(TIME_FROM_WORKER).minutes.do(worker)
+    while True:
+        schedule.run_pending()
+        time.sleep(10)
+    # worker()
