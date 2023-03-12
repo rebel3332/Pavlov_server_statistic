@@ -8,7 +8,7 @@ import requests
 import ast
 
 def GetDateFromLog():
-    file_name = "Logs/Pavlov-backup-2023.03.07-01.59.21.log"
+    file_name = LOG_PATH + "/Pavlov-backup-2023.03.07-01.59.21.log"
     count = 0
     found_json = False
     text_json = ""
@@ -54,9 +54,10 @@ def worker():
 
 if __name__  == '__main__':
     read_env()
+    global PUT_URL
+    global LOG_PATH
     LOG_PATH = os.getenv('LOG_PATH')
     TIME_FROM_WORKER = int(os.getenv('TIME_FROM_WORKER'))
-    global PUT_URL
     PUT_URL = os.getenv('PUT_URL')
     print('Read pavlov logs from path %s' % os.getenv('LOG_PATH'))
     print('worker runs every {0} minutes'.format(os.getenv('TIME_FROM_WORKER')))
