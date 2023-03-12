@@ -1,11 +1,9 @@
 from read_env import read_env
 import os
-import pandas as pd
 import json
 import schedule
 import time
 import requests
-import ast
 
 def GetDateFromLog():
     file_name = LOG_PATH + "/Pavlov-backup-2023.03.07-01.59.21.log"
@@ -25,10 +23,7 @@ def GetDateFromLog():
                         count += 1
             elif found_json:
                 if "StatManagerLog: End Stat Dump" in line:
-                    # print(text_json)
-                    # text_json += "}"
                     found_json = False
-                    # display(text_json)
                     statistic.append(json.loads(text_json))
                 else:
                     text_json = text_json + line
@@ -45,10 +40,6 @@ def worker():
     data = GetDateFromLog()
     # Передаю на сервер
     PutDate(json.dumps(data))
-    # PutDate(json.dumps('123'))
-    # PutDate({'data': '123'})
-    # PutDate('123123213213123213213')
-    # print(json.dumps(data))
     # для восстановления обратно в JSON
     # print(json.loads(json.dumps(data)))
 
